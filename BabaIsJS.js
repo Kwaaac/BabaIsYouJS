@@ -66,14 +66,12 @@ class Element {
 }
 
 class You {
-    name = "You";
+
 }
 
 class Win {
 
 }
-
-class
 
 /**
  *
@@ -85,6 +83,3 @@ class Entity {
         this.position = position
     }
 }
-
-
-class
