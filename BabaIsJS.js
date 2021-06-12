@@ -49,30 +49,42 @@ class Position {
  * Noun classes
  * */
 
+/**
+ *
+ * */
 class BabaNoun {
     constructor(attributs) {
-        this.position = attributs.position;
+        this.position = position;
         this.state = new PushState();
     }
 }
 
+/**
+ *
+ * */
 class FlagNoun {
     constructor(attributs) {
-        this.position = attributs.position;
+        this.position = position;
         this.state = new PushState();
     }
 }
 
+/**
+ *
+ * */
 class WaterNoun {
     constructor(attributs) {
-        this.position = attributs.position;
+        this.position = position;
         this.state = new PushState();
     }
 }
 
+/**
+ *
+ * */
 class RockNoun {
     constructor(attributs) {
-        this.position = attributs.position;
+        this.position = position;
         this.state = new PushState();
     }
 }
@@ -88,45 +100,71 @@ class Element {
 /**
  * Property with state pattern
  * */
-class NormalState{
+class NormalState {
     constructor() {
         this.name = "normal";
     }
 
-    isSteppable(){
+    isSteppable() {
         return true;
     }
 
-    isMovable(){
+    isMovable() {
         return false;
     }
 }
 
+/**
+ *
+ * */
 class YouState {
     constructor() {
         this.name = "you";
     }
 
-    isSteppable(){
+    isSteppable() {
         return false;
     }
 
-    isMovable(){
+    isMovable() {
         return true;
     }
 }
 
+/**
+ *  Class that represents the word "you" on the board
+ * */
+class YouProperty {
+    constructor(attributs) {
+        this.position = attributs.position;
+        this.state = new PushState();
+    }
+}
+
+/**
+ *
+ * */
 class WinState {
     constructor() {
         this.name = "win";
     }
 
-    isSteppable(){
+    isSteppable() {
         return true;
     }
 
-    isMovable(){
+    isMovable() {
         return false;
+    }
+}
+
+/**
+ *  Class that represents the word "win" on the board
+ * */
+class WinProperty {
+    constructor(position) {
+        this.position = position;
+        this.state = new PushState();
     }
 }
 
@@ -141,29 +179,52 @@ class StopState {
     /**
      * Return true if we can move on the element, false otherwise
      * */
-    isSteppable(){
+    isSteppable() {
         return false;
     }
 
     /**
      * Return true if we can move the element, false otherwise
      * */
-    isMovable(){
+    isMovable() {
         return false;
     }
 }
 
+/**
+ *  Class that represents the word "stop" on the board
+ * */
+class StopProperty {
+    constructor(position) {
+        this.position = position;
+        this.state = new PushState();
+    }
+}
+
+/**
+ *
+ * */
 class PushState {
-    constructor(){
+    constructor() {
         this.name = "push";
     }
 
-    isSteppable(){
+    isSteppable() {
         return false;
     }
 
-    isMovable(){
+    isMovable() {
         return true;
+    }
+}
+
+/**
+ *  Class that represents the word "push" on the board
+ * */
+class PushProperty {
+    constructor(position) {
+        this.position = position;
+        this.state = new PushState();
     }
 }
 
