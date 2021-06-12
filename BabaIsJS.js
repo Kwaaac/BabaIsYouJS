@@ -48,52 +48,32 @@ class Position {
 /**
  * Noun classes
  * */
-class Noun {
-    createNoun(attributs) {
-        let nounType;
-        switch (attributs.name) {
-            case "baba":
-                nounType = BabaNoun;
-                break;
-            case "flag":
-                nounType = FlagNoun;
-                break;
-            case "water":
-                nounType = WaterNoun;
-                break;
-            case "rock":
-                nounType = RockNoun;
-                break;
-        }
-        return new nounType(attributs);
-    }
-}
 
 class BabaNoun {
     constructor(attributs) {
         this.position = attributs.position;
-        this.pushable = true;
+        this.state = new PushState();
     }
 }
 
 class FlagNoun {
     constructor(attributs) {
         this.position = attributs.position;
-        this.pushable = true;
+        this.state = new PushState();
     }
 }
 
 class WaterNoun {
     constructor(attributs) {
         this.position = attributs.position;
-        this.pushable = true;
+        this.state = new PushState();
     }
 }
 
 class RockNoun {
     constructor(attributs) {
         this.position = attributs.position;
-        this.pushable = true;
+        this.state = new PushState();
     }
 }
 
@@ -101,24 +81,90 @@ class Operator {
 
 }
 
-class Property {
-    createProperty(property) {
-
-    }
-
-}
-
-
 class Element {
 
 }
 
-class You {
+/**
+ * Property with state pattern
+ * */
+class NormalState{
+    constructor() {
+        this.name = "normal";
+    }
 
+    isSteppable(){
+        return true;
+    }
+
+    isMovable(){
+        return false;
+    }
 }
 
-class Win {
+class YouState {
+    constructor() {
+        this.name = "you";
+    }
 
+    isSteppable(){
+        return false;
+    }
+
+    isMovable(){
+        return true;
+    }
+}
+
+class WinState {
+    constructor() {
+        this.name = "win";
+    }
+
+    isSteppable(){
+        return true;
+    }
+
+    isMovable(){
+        return false;
+    }
+}
+
+/**
+ *
+ * */
+class StopState {
+    constructor() {
+        this.name = "stop";
+    }
+
+    /**
+     * Return true if we can move on the element, false otherwise
+     * */
+    isSteppable(){
+        return false;
+    }
+
+    /**
+     * Return true if we can move the element, false otherwise
+     * */
+    isMovable(){
+        return false;
+    }
+}
+
+class PushState {
+    constructor(){
+        this.name = "push";
+    }
+
+    isSteppable(){
+        return false;
+    }
+
+    isMovable(){
+        return true;
+    }
 }
 
 /**
