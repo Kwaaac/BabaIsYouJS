@@ -32,16 +32,21 @@ class LevelManager {
 }
 
 /**
- *
- * */
+ * Class that represents a position on the board
+ */
 class Position {
     constructor(x, y) {
         this.x = x;
         this.y = y;
     }
 
-    add(vector) {
-        return new Position(this.x + vector.x, this.y + vector.y);
+    /**
+     * function to add two position
+     * @param {other position} position 
+     * @returns new position with news coordinates
+     */
+    add(position) {
+        return new Position(this.x + position.x, this.y + position.y);
     }
 }
 
@@ -132,8 +137,8 @@ class YouState {
 }
 
 /**
- *  Class that represents the word "you" on the board
- * */
+ * Class that represents the word "you" on the board
+ */
 class YouProperty {
     constructor(attributs) {
         this.position = attributs.position;
@@ -159,8 +164,8 @@ class WinState {
 }
 
 /**
- *  Class that represents the word "win" on the board
- * */
+ * Class that represents the word "win" on the board
+ */
 class WinProperty {
     constructor(position) {
         this.position = position;
@@ -192,8 +197,8 @@ class StopState {
 }
 
 /**
- *  Class that represents the word "stop" on the board
- * */
+ * Class that represents the word "stop" on the board
+ */
 class StopProperty {
     constructor(position) {
         this.position = position;
@@ -219,8 +224,8 @@ class PushState {
 }
 
 /**
- *  Class that represents the word "push" on the board
- * */
+ * Class that represents the word "push" on the board
+ */
 class PushProperty {
     constructor(position) {
         this.position = position;
