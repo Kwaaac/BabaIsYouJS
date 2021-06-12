@@ -45,17 +45,65 @@ class Position {
     }
 }
 
+/**
+ * Noun classes
+ * */
 class Noun {
+    createNoun(attributs) {
+        let nounType;
+        switch (attributs.name) {
+            case "baba":
+                nounType = BabaNoun;
+                break;
+            case "flag":
+                nounType = FlagNoun;
+                break;
+            case "water":
+                nounType = WaterNoun;
+                break;
+            case "rock":
+                nounType = RockNoun;
+                break;
+        }
+        return new nounType(attributs);
+    }
+}
 
+class BabaNoun {
+    constructor(attributs) {
+        this.position = attributs.position;
+        this.pushable = true;
+    }
+}
+
+class FlagNoun {
+    constructor(attributs) {
+        this.position = attributs.position;
+        this.pushable = true;
+    }
+}
+
+class WaterNoun {
+    constructor(attributs) {
+        this.position = attributs.position;
+        this.pushable = true;
+    }
+}
+
+class RockNoun {
+    constructor(attributs) {
+        this.position = attributs.position;
+        this.pushable = true;
+    }
 }
 
 class Operator {
 
 }
 
-class Property{
+class Property {
     createProperty(property) {
-        
+
     }
 
 }
