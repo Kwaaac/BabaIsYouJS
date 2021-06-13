@@ -479,10 +479,16 @@ public class JExpress {
       	out.println("serve json " + text);
       	out.println(Paths.get(text));
         res.type("application/json", "utf-8").sendFile(Paths.get("levels/" +text));
-      } else {
+      }
+      else {
       	res.status(404).type("text/html", "utf-8").send("<html>unknown resource " + text + "</html>");
       }
     });
+
+    app.get("/img/:name", (req, res) -> {
+          out.println("serve image " + req.param("name"));
+          res.type("image/png", "utf-8").sendFile(Paths.get("pictures/" + req.param("name")));
+        });
 
     app.listen(8080);
 
