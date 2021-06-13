@@ -169,13 +169,16 @@ function readJSONFile(board, filename){
         })
         .then(jsonBoard => {
             board = new Board(jsonBoard['info']['col'],jsonBoard['info']['line']);
-            let factory;
             let grid = jsonBoard['grid'];
+            let factory;
             for(let row = 0; row < board.height; row++){
                 let currentRow = grid[row];
                 for(let col = 0; col < board.width; col++){
-                    if(currentRow[col] !== "void"){
-                        
+                    let currentName = currentRow[col];
+                    if(currentName !== ""){
+                        console.log(currentName);
+                        factory = chooseCorrectFactory(currentRow[col]);
+                        board.level[row][col] = factory.create({name: currentName, position: new Position(row, col)});
                     }
                 }
             }
@@ -220,7 +223,7 @@ class Position {
 
 
 class BabaNoun {
-    constructor(attributs) {
+    constructor(position) {
         this.position = position;
         this.name = words.NOUN.BABA;
         this.type = type.NOUN;
@@ -241,7 +244,7 @@ class BabaNoun {
             })
             .then(blob => {
                 let objectURL = URL.createObjectURL(blob);
-                imageElement.src = objectURL;
+                imgElement.src = objectURL;
             })
             .catch(err => console.log(err.message));
     }
@@ -326,7 +329,7 @@ class WaterNoun {
             })
             .then(blob => {
                 let objectURL = URL.createObjectURL(blob);
-                imageElement.src = objectURL;
+                imgElement.src = objectURL;
             })
             .catch(err => console.log(err.message));
     }
@@ -962,8 +965,22 @@ class RockEntity {
     }
 }
 
-function createHTMLboard(boardTable) {
-
+/**
+ *
+ * @param boardTable
+ * @param board
+ */
+function createHTMLboard(boardTable, board) {
+    for(let row = 0; row < board.height; row++){
+        let currentRowBoard = board.level[row];
+        let currentTr = document.createElement("tr");
+        for (let col = 0; col < board.width; col++){
+            let currentColBoard = currentRowBoard[col][0][0];
+            if(currentColBoard !== "")
+                currentTr.appendChild(currentColBoard.toElement());
+        }
+        boardTable.appendChild(currentTr);
+    }
 }
 
 function move(movement) {
@@ -979,7 +996,7 @@ class Board {
                 let col = [[]];
                 row.push(col);
             }
-            grid.push(row);
+            level.push(row);
         }
 
         this.width = width;
@@ -1107,25 +1124,53 @@ class Board {
 
 window.onload = () => {
     let boardTable = document.getElementById("boardTable");
-    let board = new Board(33, 18);
+    let board;
+    let filename = "level00.json";
     let factory = chooseCorrectFactory("");
 
-    createHTMLboard(boardTable);
+    fetch("/levels/"+filename)
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw Error(response.statusText);
+        })
+        .then(jsonBoard => {
+            board = new Board(jsonBoard['info']['col'],jsonBoard['info']['line']);
+            let grid = jsonBoard['grid'];
+            let factory;
+            for(let row = 0; row < board.height; row++){
+                let currentRow = grid[row];
+                for(let col = 0; col < board.width; col++){
+                    let currentName = currentRow[col];
+                    if(currentName !== ""){
+                        factory = chooseCorrectFactory(currentRow[col]);
+                        board.level[row][col][0].push(factory.create({name: currentName, position: new Position(row, col)}));
+                    }
+                    else{
+                        board.level[row][col][0].push("");
+                    }
+                }
+            }
+            console.log(board);
+            createHTMLboard(boardTable, board);
+            boardTable.addEventListener('keyup', (ev) => {
+                switch (ev.key) {
+                    case "ArrowDown":
+                        board.move(Position.DOWN);
+                        break;
+                    case "ArrowUp":
+                        board.move(Position.UP);
+                        break;
+                    case "ArrowLeft":
+                        board.move(Position.LEFT);
+                        break;
+                    case "ArrowRight":
+                        board.move(Position.RIGHT);
+                        break;
+                }
+            });
 
-    boardTable.addEventListener('keyup', (ev) => {
-        switch (ev.key) {
-            case "ArrowDown":
-                board.move(Position.DOWN);
-                break;
-            case "ArrowUp":
-                board.move(Position.UP);
-                break;
-            case "ArrowLeft":
-                board.move(Position.LEFT);
-                break;
-            case "ArrowRight":
-                board.move(Position.RIGHT);
-                break;
-        }
-    });
+        })
+        .catch(err => console.log(err.message));
 }

@@ -475,10 +475,6 @@ public class JExpress {
       } else if (text.endsWith(".js")) {
       	out.println("serve js " + text);
         res.type("text/javascript", "utf-8").sendFile(Paths.get(text));
-      } else if (text.endsWith(".json")) {
-      	out.println("serve json " + text);
-      	out.println(Paths.get(text));
-        res.type("application/json", "utf-8").sendFile(Paths.get("levels/" +text));
       }
       else {
       	res.status(404).type("text/html", "utf-8").send("<html>unknown resource " + text + "</html>");
@@ -489,6 +485,12 @@ public class JExpress {
           out.println("serve image " + req.param("name"));
           res.type("image/png", "utf-8").sendFile(Paths.get("img/" + req.param("name")));
         });
+
+    app.get("/levels/:text", (req, res) -> {
+        out.println("serve json " + req.param("text"));
+        out.println(Paths.get(req.param("text")));
+        res.type("application/json", "utf-8").sendFile(Paths.get("levels/" + req.param("text")));
+    });
 
     app.listen(8080);
 
