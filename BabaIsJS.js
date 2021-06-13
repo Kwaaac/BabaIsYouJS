@@ -1012,34 +1012,77 @@ class Board {
         return tabYou;
     }
 
+    /**
+     * Move the entity
+     *
+     * @param movement
+     * @param grid
+     * @param youEntity
+     * @returns {boolean} True if the entity has moved, false otherwise
+     */
+    moveEntity(movement, grid, youEntity) {
+        let flagStep = true;
+        let nextPosition = movement.position.add(youEntity.position);
+        if (nextPosition.x >= this.width || nextPosition.x < 0 || nextPosition.y >= this.height || nextPosition < 0) {
+            return false;
+        }
 
-    doMove(movement, grid, x, y) {
-        let tabYou = this.getYouArray();
+        let nextEntities = grid[nextPosition.x][nextPosition.y];
 
-        tabYou.forEach(youEntity => {
-            let nextPosition = movement.position.add(youEntity.position);
-            if (nextPosition.x >= this.width || nextPosition.x < 0 || nextPosition.y >= this.height || nextPosition < 0) {
-                return;
-            }
-
-            let nextEntities = grid[nextPosition.x][nextPosition.y];
-
-            nextEntities.forEach(ent => {
-                let states = this.rules[ent.name];
-                states.forEach(state => {
-                    if (state.isMovable()) {
-                        this.doMove(movement, grid,)
+        nextEntities.forEach(ent => {
+            let states = this.rules[ent.name];
+            states.forEach(state => {
+                if (state.isMovable()) {
+                    // Recursive move
+                    if (!this.moveEntity(movement, grid, ent)) {
+                        return false;
                     }
-                })
+                }
+                if (state.isSteppable()) {
+                    flagStep = true;
+                }
             })
         })
+
+        let currentPos = grid[youEntity.position.x][youEntity.position.y];
+
+        if (currentPos.length === 0 || flagStep === true) {
+            let pos;
+            for (pos = 0; pos < currentPos.length; pos++) {
+                if (currentPos[pos].name === youEntity.name) {
+                    break;
+                }
+            }
+            currentPos.splice(pos, 1);
+
+            nextEntities.push(youEntity);
+        }
+
+        return true;
+    }
+
+    doMove(movement, grid, x, y) {
+
+        this.moveEntity(movement, grid, youEntity);
+        let currentPos = grid[youEntity.position.x][youEntity.position.y];
+        currentPos.forEach(ent => {
+                let states = this.rules[ent.name];
+                states.forEach(state => {
+                    if (state.name === "win") {
+                        console.log("C'est gagné bravo !");
+                    }
+                })
+            }
+        )
     }
 
     move(movement) {
         let grid = this.level[0];
-
+        let tabYou = this.getYouArray();
         if (movement.x === 1 && movement.y === 0 || movement.x === 0 && movement.y === 1) {
+            tabYou.forEach(youEntity => {
 
+            })
         }
     }
 }
