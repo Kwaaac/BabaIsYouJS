@@ -400,27 +400,75 @@ class Board {
             grid.push(row);
         }
 
+        this.width = width;
+        this.height = height;
+
         this.level = level;
 
         this.rules = {};
     }
 
+    checkOpAndPropRule(movement, ent, grid) {
+        let nextEntitiesOperator = grid[ent.position][ent.position + 1].filter(ent => ent === type.OPERATOR);
+        if (nextEntitiesOperator.length !== 0) {
+            let nextEntitiesProperty = grid[ent.position][ent.position + 2].filter(ent => ent === type.PROPERTY);
+            if (nextEntitiesOperator.length !== 0) {
+                let ruleKey = ent.name.split("_")[0] + "_entity";
+                if (!this.rules[ruleKey]) {
+                    this.rules[ruleKey] = [];
+                }
+                this.rules[ruleKey].push(nextEntitiesProperty[0].state);
+            }
+        }
+    }
+
+    updateRules() {
+        this.rules = {};
+        let grid = this.level[0];
+
+        grid.forEach(row => row.forEach(col => col.forEach(ent => {
+            if (ent.type === type.NOUN) {
+                this.checkOpAndPropRule(Position.RIGHT, ent, grid);
+                this.checkOpAndPropRule(Position.DOWN, ent, grid);
+            }
+        })))
+    }
+
     getYouArray() {
         let tabYou = [];
-        this.level[0].forEach(row => row.forEach(col => col.forEach()));
+        this.level[0].forEach(row => row.forEach(col => col.forEach(ent => {
+            let states = this.rules[ent.name];
+            states.forEach(state => {
+                if(state.name === "you"){
+                    tabYou.push(ent);
+                }
+            })
+        })));
 
         return tabYou;
     }
+
+
 
     doMove(movement, grid, x, y) {
         let tabYou = this.getYouArray();
 
         tabYou.forEach(youEntity => {
             let nextPosition = movement.position.add(youEntity.position);
+            if(nextPosition.x >= this.width || nextPosition.x < 0 || nextPosition.y >= this.height || nextPosition < 0){
+                return;
+            }
 
             let nextEntities = grid[nextPosition.x][nextPosition.y];
 
-            nextEntities.forEach(ent =>)
+            nextEntities.forEach(ent => {
+                let states = this.rules[ent.name];
+                states.forEach(state => {
+                    if(state.isMovable()){
+                        this.doMove(movement, grid, )
+                    }
+                })
+            })
         })
     }
 
