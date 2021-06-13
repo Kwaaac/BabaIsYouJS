@@ -1,0 +1,62 @@
+{
+  "info": {
+    "line": "18",
+    "col": "24"
+  },
+  "grid": [
+    [
+      "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""
+    ],
+    [
+      "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""
+    ],
+    [
+      "", "", "", "", "", "", "", "","", "flag_entity", "flag_entity", "flag_entity", "flag_entity", "flag_entity", "flag_entity", "flag_entity", "flag_entity", "", "", "", "", "", "", ""
+    ],
+    [
+      "", "", "", "", "", "", "", "", "", "flag_entity", "", "", "", "", "", "", "flag_entity", "", "", "", "", "", "", ""
+    ],
+    [
+      "", "", "", "", "", "", "", "", "", "flag_entity", "", "is_operator", "", "", "", "", "flag_entity", "", "", "", "", "", "", ""
+    ],
+    [
+      "", "", "", "", "", "", "", "", "", "flag_entity", "", "", "", "", "", "", "flag_entity", "", "", "", "", "", "", ""
+    ],
+    [
+      "", "", "", "", "", "flag_entity", "flag_entity", "flag_entity", "flag_entity", "flag_entity", "", "", "", "", "win_property", "", "flag_entity", "", "", "", "", "", "", ""
+    ],
+    [
+      "", "", "", "", "", "flag_entity", "", "", "", "", "", "", "", "", "", "", "flag_entity", "", "", "", "", "", "", "", ""
+    ],
+    [
+      "", "", "", "", "", "flag_entity", "", "baba_noun", "", "", "", "", "", "", "", "", "flag_entity", "", "", "", "", "", "", ""
+    ],
+    [
+      "", "", "", "", "", "flag_entity", "", "", "", "", "", "", "", "", "", "", "flag_entity", "", "", "", "", "", "", ""
+    ],
+    [
+      "", "", "", "", "", "flag_entity", "flag_entity", "flag_entity", "flag_entity", "flag_entity", "flag_entity", "flag_entity", "flag_entity", "flag_entity", "flag_entity", "flag_entity", "flag_entity", "", "", "", "", "", "", ""
+    ],
+    [
+      "", "", "", "", "", "", "", "", "", "flag_entity", "", "", "", "", "", "", "flag_entity", "", "", "", "", "", "", ""
+    ],
+    [
+      "", "", "", "", "", "", "wall_noun", "", "", "flag_entity", "", "flag_noun", "", "", "", "", "flag_entity", "", "", "", "", "", "", ""
+    ],
+    [
+      "", "", "", "", "", "", "is_operator", "", "", "flag_entity", "", "is_operator", "", "", "", "", "flag_entity", "", "", "","","","",""
+    ],
+    [
+      "", "", "", "", "", "", "you_property", "", "", "flag_entity", "", "stop_property", "", "wall_entity", "", "", "flag_entity", "", "", "", "", "", "", ""
+    ],
+    [
+      "", "", "", "", "", "", "", "", "", "flag_entity", "", "", "", "flag_entity", "flag_entity", "flag_entity", "flag_entity", "", "", "", "", "", "", ""
+    ],
+    [
+      "", "", "", "", "", "", "", "", "", "flag_entity", "flag_entity", "flag_entity", "flag_entity", "flag_entity", "", "", "", "", "", "", "", "", "", ""
+    ],
+    [
+      "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""
+    ]
+  ]
+}
