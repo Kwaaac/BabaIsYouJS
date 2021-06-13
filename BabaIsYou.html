@@ -9,14 +9,55 @@
     <meta name="theme-color" content="#fafafa">
     <link rel="stylesheet" href="css/BabaIsCSS.css">
 
-    <script src="js/BabaIsJS.js.js" type="text/javascript"></script>
+    <!-- <script src="BabaIsJS.js" type="text/javascript"></script> -->
     <script>
-        window.onload= () => {
+        class Board {
+            constructor(width, height) {
+                let grid = [];
+                for (let i = 0; i < height; i++) {
+                    let row = [];
+                    for (let j = 0; j < width; j++) {
+                        let col = [[]];
+                        row.push(col);
+                    }
+                    grid.push(row);
+                }
 
+                this.grid = grid;
+                console.log(this.grid);
+            }
         }
+        window.onload = () => {
+            let boardTable = document.getElementById("boardTable");
+            let rules = {flagEntity: ["win"]};
+            let board = new Board(33, 18);
+
+            let json = JSON.stringify(board.grid);
+
+            console.log(json);
 
 
+            createHTMLboard(boardTable);
+
+            boardTable.addEventListener('keyup', (ev) => {
+                switch (ev.key) {
+                    case "ArrowDown":
+                        move(Position.DOWN);
+                        break;
+                    case "ArrowUp":
+                        move(Position.UP);
+                        break;
+                    case "ArrowLeft":
+                        move(Position.LEFT);
+                        break;
+                    case "ArrowRight":
+                        move(Position.RIGHT);
+                        break;
+                }
+            });
+        }
     </script>
+
 </head>
 
 <body>
@@ -25,9 +66,9 @@
 <h3>Baba c'est toi</h3>
 
 <canvas>
-    <board>
+    <table id="boardTable">
 
-    </board>
+    </table>
 </canvas>
 
 </body>
