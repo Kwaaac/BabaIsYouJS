@@ -12,61 +12,149 @@ let type = {
 
 let words = {
     NOUN: {
-        BABA: {
-            name: 'baba_noun',
-            ref: BabaNoun
-        },
-        FLAG: {
-            name: 'flag_noun',
-            ref: FlagNoun
-        },
-        WALL: {
-            name: 'wall_noun',
-            ref: WallNoun
-        },
-        WATER: {
-            name: 'water_noun',
-            ref: WaterNoun
-        },
-        ROCK: {
-            name: 'rock_noun',
-            ref: RockNoun
-        }
+        BABA: 'baba_noun',
+        FLAG: 'flag_noun',
+        WALL: 'wall_noun',
+        WATER: 'water_noun',
+        ROCK: 'rock_noun'
     },
     OPERATOR: {
         IS: 'is_operator'
     },
     PROPERTY: {
-        YOU: {
-            name: 'you_property',
-            ref: YouProperty
-        },
-        WIN: {
-            name: 'win_property',
-            ref: WinProperty
-        },
-        STOP: {
-            name: 'stop_property',
-            ref: StopProperty
-        },
-        PUSH: {
-            name: 'push_property',
-
-            ref: PushProperty
-        }
+        YOU: 'you_property',
+        WIN: 'win_property',
+        STOP: 'stop_property',
+        PUSH: 'push_property'
     }
 };
 
 let entity = {
-    BABA: {
-        name: 'baba_entity',
-        ref: BabaEntity
-    },
+    BABA: 'baba_entity',
     FLAG: 'flag_entity',
     WALL: 'wall_entity',
     WATER: 'water_entity',
     ROCK: 'rock_entity'
 };
+
+/**
+ * function return the correct factory with argument name
+ * @param name
+ * @returns {PropertyFactory|NounFactory|EntityFactory|OperatorFactory}
+ */
+function chooseCorrectFactory(name) {
+    if (name.endsWith('entity')) {
+        return new EntityFactory();
+    } else if (name.endsWith('noun')) {
+        return new NounFactory();
+    } else if (name.endsWith('operator')) {
+        return new OperatorFactory();
+    } else {
+        return new PropertyFactory();
+    }
+}
+
+/**
+ * function to create entity class
+ * @constructor
+ */
+function EntityFactory() {
+    /**
+     *
+     * @param attributs object contains fields name and position
+     * @returns {*}
+     */
+    this.create = function (attributs) {
+        switch (attributs.name) {
+            case entity.BABA:
+                return new BabaEntity(attributs.position);
+            case entity.FLAG:
+                return new FlagEntity(attributs.position);
+            case entity.WALL:
+                return new WallEntity(attributs.position);
+            case entity.WATER:
+                return new WaterEntity(attributs.position);
+            case entity.ROCK:
+                return new RockEntity(attributs.position);
+            default:
+                break;
+        }
+    }
+}
+
+/**
+ * function to create noun class
+ * @constructor
+ */
+function NounFactory() {
+    /**
+     *
+     * @param attributs contains fields name and position
+     * @returns {*}
+     */
+    this.create = function (attributs) {
+        switch (attributs.name) {
+            case words.NOUN.BABA:
+                return new BabaNoun(attributs.position);
+            case words.NOUN.FLAG:
+                return new FlagNoun(attributs.position);
+            case words.NOUN.WALL:
+                return new WallNoun(attributs.position);
+            case words.NOUN.WATER:
+                return new WaterNoun(attributs.position);
+            case words.NOUN.ROCK:
+                return new RockNoun(attributs.position);
+            default:
+                break;
+        }
+    }
+}
+
+/**
+ * function to create property class
+ * @constructor
+ */
+function PropertyFactory() {
+    /**
+     *
+     * @param attributs contains fields name and position
+     * @returns {*}
+     */
+    this.create = function (attributs) {
+        switch (attributs.name) {
+            case words.PROPERTY.YOU:
+                return new YouProperty(attributs.position);
+            case words.PROPERTY.WIN:
+                return new WinProperty(attributs.position);
+            case words.PROPERTY.STOP:
+                return new StopProperty(attributs.position);
+            case words.PROPERTY.PUSH:
+                return new PushProperty(attributs.position);
+            default:
+                break;
+        }
+    }
+}
+
+/**
+ * function to create operator class
+ * @constructor
+ */
+function OperatorFactory() {
+    /**
+     *
+     * @param attributs contains field and position
+     * @returns {IsOperator}
+     */
+    this.create = function (attributs) {
+        switch (attributs.name) {
+            case words.OPERATOR.YOU:
+                return new IsOperator(attributs.position);
+            default:
+                break;
+        }
+    }
+}
 
 /**
  * Class to read a JSON file
@@ -120,6 +208,37 @@ class BabaNoun {
         this.type = type.NOUN;
         this.state = new PushState();
     }
+
+    /**
+     *
+     * @param imgElement
+     */
+    getImageServer(imgElement) {
+        fetch("images/js-canvas/html5.png")
+            .then(response => {
+                if (response.ok) {
+                    return response.blob();
+                }
+                throw Error(response.statusText);
+            })
+            .then(blob => {
+                let objectURL = URL.createObjectURL(blob);
+                imageElement.src = objectURL;
+            })
+            .catch(err => console.log(err.message));
+    }
+
+    /**
+     *
+     * @returns {HTMLTableDataCellElement}
+     */
+    toElement() {
+        let td = document.createElement("td");
+        let image = document.createElement("img");
+        this.getImageServer(image);
+        td.appendChild(image);
+        return td;
+    }
 }
 
 /**
@@ -132,6 +251,37 @@ class FlagNoun {
         this.type = type.NOUN;
         this.state = new PushState();
     }
+
+    /**
+     *
+     * @param imgElement
+     */
+    getImageServer(imgElement) {
+        fetch("images/js-canvas/html5.png")
+            .then(response => {
+                if (response.ok) {
+                    return response.blob();
+                }
+                throw Error(response.statusText);
+            })
+            .then(blob => {
+                let objectURL = URL.createObjectURL(blob);
+                imageElement.src = objectURL;
+            })
+            .catch(err => console.log(err.message));
+    }
+
+    /**
+     *
+     * @returns {HTMLTableDataCellElement}
+     */
+    toElement() {
+        let td = document.createElement("td");
+        let image = document.createElement("img");
+        this.getImageServer(image);
+        td.appendChild(image);
+        return td;
+    }
 }
 
 /**
@@ -143,13 +293,75 @@ class WaterNoun {
         this.name = words.NOUN.WATER;
         this.type = type.NOUN;
     }
+
+    /**
+     *
+     * @param imgElement
+     */
+    getImageServer(imgElement) {
+        fetch("images/js-canvas/html5.png")
+            .then(response => {
+                if (response.ok) {
+                    return response.blob();
+                }
+                throw Error(response.statusText);
+            })
+            .then(blob => {
+                let objectURL = URL.createObjectURL(blob);
+                imageElement.src = objectURL;
+            })
+            .catch(err => console.log(err.message));
+    }
+
+    /**
+     *
+     * @returns {HTMLTableDataCellElement}
+     */
+    toElement() {
+        let td = document.createElement("td");
+        let image = document.createElement("img");
+        this.getImageServer(image);
+        td.appendChild(image);
+        return td;
+    }
 }
 
 class WallNoun {
-    constructor() {
+    constructor(position) {
         this.position = position;
         this.name = words.NOUN.WALL;
         this.type = type.NOUN;
+    }
+
+    /**
+     *
+     * @param imgElement
+     */
+    getImageServer(imgElement) {
+        fetch("images/js-canvas/html5.png")
+            .then(response => {
+                if (response.ok) {
+                    return response.blob();
+                }
+                throw Error(response.statusText);
+            })
+            .then(blob => {
+                let objectURL = URL.createObjectURL(blob);
+                imageElement.src = objectURL;
+            })
+            .catch(err => console.log(err.message));
+    }
+
+    /**
+     *
+     * @returns {HTMLTableDataCellElement}
+     */
+    toElement() {
+        let td = document.createElement("td");
+        let image = document.createElement("img");
+        this.getImageServer(image);
+        td.appendChild(image);
+        return td;
     }
 }
 
@@ -162,6 +374,79 @@ class RockNoun {
         this.name = words.NOUN.ROCK;
         this.position = position;
         this.state = new PushState();
+    }
+
+    /**
+     *
+     * @param imgElement
+     */
+    getImageServer(imgElement) {
+        fetch("images/js-canvas/html5.png")
+            .then(response => {
+                if (response.ok) {
+                    return response.blob();
+                }
+                throw Error(response.statusText);
+            })
+            .then(blob => {
+                let objectURL = URL.createObjectURL(blob);
+                imageElement.src = objectURL;
+            })
+            .catch(err => console.log(err.message));
+    }
+
+    /**
+     *
+     * @returns {HTMLTableDataCellElement}
+     */
+    toElement() {
+        let td = document.createElement("td");
+        let image = document.createElement("img");
+        this.getImageServer(image);
+        td.appendChild(image);
+        return td;
+    }
+}
+
+/**
+ * Class that represents IS Operator on the board
+ */
+class IsOperator {
+    constructor(position) {
+        this.name = words.OPERATOR.IS;
+        this.position = position;
+        this.type = type.OPERATOR;
+    }
+
+    /**
+     *
+     * @param imgElement
+     */
+    getImageServer(imgElement) {
+        fetch("images/js-canvas/html5.png")
+            .then(response => {
+                if (response.ok) {
+                    return response.blob();
+                }
+                throw Error(response.statusText);
+            })
+            .then(blob => {
+                let objectURL = URL.createObjectURL(blob);
+                imageElement.src = objectURL;
+            })
+            .catch(err => console.log(err.message));
+    }
+
+    /**
+     *
+     * @returns {HTMLTableDataCellElement}
+     */
+    toElement() {
+        let td = document.createElement("td");
+        let image = document.createElement("img");
+        this.getImageServer(image);
+        td.appendChild(image);
+        return td;
     }
 }
 
@@ -224,6 +509,37 @@ class YouProperty {
         this.type = type.PROPERTY;
         this.state = new PushState();
     }
+
+    /**
+     *
+     * @param imgElement
+     */
+    getImageServer(imgElement) {
+        fetch("images/js-canvas/html5.png")
+            .then(response => {
+                if (response.ok) {
+                    return response.blob();
+                }
+                throw Error(response.statusText);
+            })
+            .then(blob => {
+                let objectURL = URL.createObjectURL(blob);
+                imageElement.src = objectURL;
+            })
+            .catch(err => console.log(err.message));
+    }
+
+    /**
+     *
+     * @returns {HTMLTableDataCellElement}
+     */
+    toElement() {
+        let td = document.createElement("td");
+        let image = document.createElement("img");
+        this.getImageServer(image);
+        td.appendChild(image);
+        return td;
+    }
 }
 
 /**
@@ -260,6 +576,37 @@ class WinProperty {
         this.type = type.PROPERTY;
         this.words = words.PROPERTY.WIN;
         this.state = new PushState();
+    }
+
+    /**
+     *
+     * @param imgElement
+     */
+    getImageServer(imgElement) {
+        fetch("images/js-canvas/html5.png")
+            .then(response => {
+                if (response.ok) {
+                    return response.blob();
+                }
+                throw Error(response.statusText);
+            })
+            .then(blob => {
+                let objectURL = URL.createObjectURL(blob);
+                imageElement.src = objectURL;
+            })
+            .catch(err => console.log(err.message));
+    }
+
+    /**
+     *
+     * @returns {HTMLTableDataCellElement}
+     */
+    toElement() {
+        let td = document.createElement("td");
+        let image = document.createElement("img");
+        this.getImageServer(image);
+        td.appendChild(image);
+        return td;
     }
 }
 
@@ -298,6 +645,37 @@ class StopProperty {
         this.type = type.PROPERTY;
         this.state = new PushState();
     }
+
+    /**
+     *
+     * @param imgElement
+     */
+    getImageServer(imgElement) {
+        fetch("images/js-canvas/html5.png")
+            .then(response => {
+                if (response.ok) {
+                    return response.blob();
+                }
+                throw Error(response.statusText);
+            })
+            .then(blob => {
+                let objectURL = URL.createObjectURL(blob);
+                imageElement.src = objectURL;
+            })
+            .catch(err => console.log(err.message));
+    }
+
+    /**
+     *
+     * @returns {HTMLTableDataCellElement}
+     */
+    toElement() {
+        let td = document.createElement("td");
+        let image = document.createElement("img");
+        this.getImageServer(image);
+        td.appendChild(image);
+        return td;
+    }
 }
 
 /**
@@ -334,6 +712,37 @@ class PushProperty {
         this.name = words.PROPERTY.PUSH;
         this.state = new PushState();
     }
+
+    /**
+     *
+     * @param imgElement
+     */
+    getImageServer(imgElement) {
+        fetch("images/js-canvas/html5.png")
+            .then(response => {
+                if (response.ok) {
+                    return response.blob();
+                }
+                throw Error(response.statusText);
+            })
+            .then(blob => {
+                let objectURL = URL.createObjectURL(blob);
+                imageElement.src = objectURL;
+            })
+            .catch(err => console.log(err.message));
+    }
+
+    /**
+     *
+     * @returns {HTMLTableDataCellElement}
+     */
+    toElement() {
+        let td = document.createElement("td");
+        let image = document.createElement("img");
+        this.getImageServer(image);
+        td.appendChild(image);
+        return td;
+    }
 }
 
 /**
@@ -345,6 +754,37 @@ class BabaEntity {
         this.type = type.ENTITY;
         this.position = position
     }
+
+    /**
+     *
+     * @param imgElement
+     */
+    getImageServer(imgElement) {
+        fetch("images/js-canvas/html5.png")
+            .then(response => {
+                if (response.ok) {
+                    return response.blob();
+                }
+                throw Error(response.statusText);
+            })
+            .then(blob => {
+                let objectURL = URL.createObjectURL(blob);
+                imageElement.src = objectURL;
+            })
+            .catch(err => console.log(err.message));
+    }
+
+    /**
+     *
+     * @returns {HTMLTableDataCellElement}
+     */
+    toElement() {
+        let td = document.createElement("td");
+        let image = document.createElement("img");
+        this.getImageServer(image);
+        td.appendChild(image);
+        return td;
+    }
 }
 
 class FlagEntity {
@@ -352,6 +792,37 @@ class FlagEntity {
         this.name = entity.FLAG;
         this.type = type.ENTITY;
         this.position = position;
+    }
+
+    /**
+     *
+     * @param imgElement
+     */
+    getImageServer(imgElement) {
+        fetch("images/js-canvas/html5.png")
+            .then(response => {
+                if (response.ok) {
+                    return response.blob();
+                }
+                throw Error(response.statusText);
+            })
+            .then(blob => {
+                let objectURL = URL.createObjectURL(blob);
+                imageElement.src = objectURL;
+            })
+            .catch(err => console.log(err.message));
+    }
+
+    /**
+     *
+     * @returns {HTMLTableDataCellElement}
+     */
+    toElement() {
+        let td = document.createElement("td");
+        let image = document.createElement("img");
+        this.getImageServer(image);
+        td.appendChild(image);
+        return td;
     }
 }
 
@@ -362,6 +833,37 @@ class WallEntity {
         this.type = type.ENTITY;
         this.position = position;
     }
+
+    /**
+     *
+     * @param imgElement
+     */
+    getImageServer(imgElement) {
+        fetch("images/js-canvas/html5.png")
+            .then(response => {
+                if (response.ok) {
+                    return response.blob();
+                }
+                throw Error(response.statusText);
+            })
+            .then(blob => {
+                let objectURL = URL.createObjectURL(blob);
+                imageElement.src = objectURL;
+            })
+            .catch(err => console.log(err.message));
+    }
+
+    /**
+     *
+     * @returns {HTMLTableDataCellElement}
+     */
+    toElement() {
+        let td = document.createElement("td");
+        let image = document.createElement("img");
+        this.getImageServer(image);
+        td.appendChild(image);
+        return td;
+    }
 }
 
 class WaterEntity {
@@ -370,6 +872,37 @@ class WaterEntity {
         this.type = type.ENTITY;
         this.position = position;
     }
+
+    /**
+     *
+     * @param imgElement
+     */
+    getImageServer(imgElement) {
+        fetch("images/js-canvas/html5.png")
+            .then(response => {
+                if (response.ok) {
+                    return response.blob();
+                }
+                throw Error(response.statusText);
+            })
+            .then(blob => {
+                let objectURL = URL.createObjectURL(blob);
+                imageElement.src = objectURL;
+            })
+            .catch(err => console.log(err.message));
+    }
+
+    /**
+     *
+     * @returns {HTMLTableDataCellElement}
+     */
+    toElement() {
+        let td = document.createElement("td");
+        let image = document.createElement("img");
+        this.getImageServer(image);
+        td.appendChild(image);
+        return td;
+    }
 }
 
 class RockEntity {
@@ -377,6 +910,37 @@ class RockEntity {
         this.name = entity.ROCK;
         this.type = type.ENTITY;
         this.position = position;
+    }
+
+    /**
+     *
+     * @param imgElement
+     */
+    getImageServer(imgElement) {
+        fetch("images/js-canvas/html5.png")
+            .then(response => {
+                if (response.ok) {
+                    return response.blob();
+                }
+                throw Error(response.statusText);
+            })
+            .then(blob => {
+                let objectURL = URL.createObjectURL(blob);
+                imageElement.src = objectURL;
+            })
+            .catch(err => console.log(err.message));
+    }
+
+    /**
+     *
+     * @returns {HTMLTableDataCellElement}
+     */
+    toElement() {
+        let td = document.createElement("td");
+        let image = document.createElement("img");
+        this.getImageServer(image);
+        td.appendChild(image);
+        return td;
     }
 }
 
@@ -439,7 +1003,7 @@ class Board {
         this.level[0].forEach(row => row.forEach(col => col.forEach(ent => {
             let states = this.rules[ent.name];
             states.forEach(state => {
-                if(state.name === "you"){
+                if (state.name === "you") {
                     tabYou.push(ent);
                 }
             })
@@ -449,13 +1013,12 @@ class Board {
     }
 
 
-
     doMove(movement, grid, x, y) {
         let tabYou = this.getYouArray();
 
         tabYou.forEach(youEntity => {
             let nextPosition = movement.position.add(youEntity.position);
-            if(nextPosition.x >= this.width || nextPosition.x < 0 || nextPosition.y >= this.height || nextPosition < 0){
+            if (nextPosition.x >= this.width || nextPosition.x < 0 || nextPosition.y >= this.height || nextPosition < 0) {
                 return;
             }
 
@@ -464,8 +1027,8 @@ class Board {
             nextEntities.forEach(ent => {
                 let states = this.rules[ent.name];
                 states.forEach(state => {
-                    if(state.isMovable()){
-                        this.doMove(movement, grid, )
+                    if (state.isMovable()) {
+                        this.doMove(movement, grid,)
                     }
                 })
             })
@@ -484,6 +1047,7 @@ class Board {
 window.onload = () => {
     let boardTable = document.getElementById("boardTable");
     let board = new Board(33, 18);
+    let factory = chooseCorrectFactory("");
 
     createHTMLboard(boardTable);
 
