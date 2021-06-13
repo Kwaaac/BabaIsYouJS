@@ -5,58 +5,58 @@
   },
   "grid": [
     [
-      "void", "void", "void", "void", "void", "void", "void", "void", "void", "void", "void", "void", "void", "void", "void", "void", "void", "void", "void", "void", "void", "void", "void", "void"
+      "", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "", "", "", ""
     ],
     [
-      "void", "void", "void", "void", "void", "void", "void", "void", "void", "void", "void", "void", "void", "void", "void", "void", "void", "void", "void", "void", "void", "void", "void", "void"
+      "", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "", "", "", ""
     ],
     [
-      "void", "void", "void", "void", "void", "void", "void", "void","void", "e-flag", "e-flag", "e-flag", "e-flag", "e-flag", "e-flag", "e-flag", "e-flag", "void", "void", "void", "void", "void", "void", "void"
+      "", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "", "", "", ""
     ],
     [
-      "void", "void", "void", "void", "void", "void", "void", "void", "void", "e-flag", "void", "void", "void", "void", "void", "void", "e-flag", "void", "void", "void", "void", "void", "void", "void"
+      "", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "", "", "", ""
     ],
     [
-      "void", "void", "void", "void", "void", "void", "void", "void", "void", "e-flag", "void", "w-is", "void", "void", "void", "void", "e-flag", "void", "void", "void", "void", "void", "void", "void"
+      "", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "", "", "", ""
     ],
     [
-      "void", "void", "void", "void", "void", "void", "void", "void", "void", "e-flag", "void", "void", "void", "void", "void", "void", "e-flag", "void", "void", "void", "void", "void", "void", "void"
+      "", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "", "", "", ""
     ],
     [
-      "void", "void", "void", "void", "void", "e-flag", "e-flag", "e-flag", "e-flag", "e-flag", "void", "void", "void", "void", "w-win", "void", "e-flag", "void", "void", "void", "void", "void", "void", "void"
+      "", "", "","", "", "","", "", "","", "", "baba_noun","is_operator", "you_property", "","", "", "","", "flag_noun", "is_operator","win_property", "", "","", "", "","", "", "", "", "", ""
     ],
     [
-      "void", "void", "void", "void", "void", "e-flag", "void", "void", "void", "void", "void", "void", "void", "void", "void", "void", "e-flag", "void", "void", "void", "void", "void", "void", "void", "void"
+      "", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "", "", "", ""
     ],
     [
-      "void", "void", "void", "void", "void", "e-flag", "void", "w-baba", "void", "void", "void", "void", "void", "void", "void", "void", "e-flag", "void", "void", "void", "void", "void", "void", "void"
+      "", "", "","", "", "","", "", "","", "", "wall_entity","wall_entity", "wall_entity", "wall_entity","wall_entity", "wall_entity", "wall_entity","wall_entity", "wall_entity", "wall_entity","wall_entity", "wall_entity", "","", "", "","", "", "", "", "", ""
     ],
     [
-      "void", "void", "void", "void", "void", "e-flag", "void", "void", "void", "void", "void", "void", "void", "void", "void", "void", "e-flag", "void", "void", "void", "void", "void", "void", "void"
+      "", "", "","", "", "","", "", "","", "", "","", "", "","", "", "rock_entity","", "", "","", "", "","", "", "","", "", "", "", "", ""
     ],
     [
-      "void", "void", "void", "void", "void", "e-flag", "e-flag", "e-flag", "e-flag", "e-flag", "e-flag", "e-flag", "e-flag", "e-flag", "e-flag", "e-flag", "e-flag", "void", "void", "void", "void", "void", "void", "void"
+      "", "", "","", "", "","", "", "","", "", "","", "baba_entity", "","", "", "rock_entity","", "", "","flag_entity", "", "","", "", "","", "", "", "", "", ""
     ],
     [
-      "void", "void", "void", "void", "void", "void", "void", "void", "void", "e-flag", "void", "void", "void", "void", "void", "void", "e-flag", "void", "void", "void", "void", "void", "void", "void"
+      "", "", "","", "", "","", "", "","", "", "","", "", "","", "", "rock_entity","", "", "","", "", "","", "", "","", "", "", "", "", ""
     ],
     [
-      "void", "void", "void", "void", "void", "void", "w-wall", "void", "void", "e-flag", "void", "w-flag", "void", "void", "void", "void", "e-flag", "void", "void", "void", "void", "void", "void", "void"
+      "", "", "","", "", "","", "", "","", "", "wall_entity","wall_entity", "wall_entity", "wall_entity","wall_entity", "wall_entity", "wall_entity","wall_entity", "wall_entity", "wall_entity","wall_entity", "wall_entity", "","", "", "","", "", "", "", "", ""
     ],
     [
-      "void", "void", "void", "void", "void", "void", "w-is", "void", "void", "e-flag", "void", "w-is", "void", "void", "void", "void", "e-flag", "void", "void", "void","void","void","void","void"
+      "", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "", "", "", ""
     ],
     [
-      "void", "void", "void", "void", "void", "void", "w-you", "void", "void", "e-flag", "void", "w-stop", "void", "e-wall", "void", "void", "e-flag", "void", "void", "void", "void", "void", "void", "void"
+      "", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "", "", "", ""
     ],
     [
-      "void", "void", "void", "void", "void", "void", "void", "void", "void", "e-flag", "void", "void", "void", "e-flag", "e-flag", "e-flag", "e-flag", "void", "void", "void", "void", "void", "void", "void"
+      "", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "", "", "", ""
     ],
     [
-      "void", "void", "void", "void", "void", "void", "void", "void", "void", "e-flag", "e-flag", "e-flag", "e-flag", "e-flag", "void", "void", "void", "void", "void", "void", "void", "void", "void", "void"
+      "", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "", "", "", ""
     ],
     [
-      "void", "void", "void", "void", "void", "void", "void", "void", "void", "void", "void", "void", "void", "void", "void", "void", "void", "void", "void", "void", "void", "void", "void", "void"
+      "", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "", "", "", ""
     ]
   ]
 }
