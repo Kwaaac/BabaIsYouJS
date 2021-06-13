@@ -168,7 +168,17 @@ function readJSONFile(board, filename){
             throw Error(response.statusText);
         })
         .then(jsonBoard => {
-            board = new Board(0,0);
+            board = new Board(jsonBoard['info']['col'],jsonBoard['info']['line']);
+            let factory;
+            let grid = jsonBoard['grid'];
+            for(let row = 0; row < board.height; row++){
+                let currentRow = grid[row];
+                for(let col = 0; col < board.width; col++){
+                    if(currentRow[col] !== "void"){
+                        
+                    }
+                }
+            }
         })
         .catch(err => console.log(err.message));
 }
