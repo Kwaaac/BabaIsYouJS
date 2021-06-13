@@ -159,10 +159,18 @@ function OperatorFactory() {
 /**
  * Class to read a JSON file
  */
-class EncryptionDecorator {
-    constructor(filename) {
-
-    }
+function readJSONFile(board, filename){
+    fetch("/levels/"+filename)
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw Error(response.statusText);
+        })
+        .then(jsonBoard => {
+            board = new Board(0,0);
+        })
+        .catch(err => console.log(err.message));
 }
 
 class LevelManager {
