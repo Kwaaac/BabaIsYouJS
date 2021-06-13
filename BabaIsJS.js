@@ -214,7 +214,7 @@ class BabaNoun {
      * @param imgElement
      */
     getImageServer(imgElement) {
-        fetch("images/js-canvas/html5.png")
+        fetch("/img/text_baba_0_1.png")
             .then(response => {
                 if (response.ok) {
                     return response.blob();
@@ -257,7 +257,7 @@ class FlagNoun {
      * @param imgElement
      */
     getImageServer(imgElement) {
-        fetch("images/js-canvas/html5.png")
+        fetch("images/text_flag_0_1.png")
             .then(response => {
                 if (response.ok) {
                     return response.blob();
@@ -299,7 +299,7 @@ class WaterNoun {
      * @param imgElement
      */
     getImageServer(imgElement) {
-        fetch("images/js-canvas/html5.png")
+        fetch("images/text_water_0_1.png")
             .then(response => {
                 if (response.ok) {
                     return response.blob();
@@ -338,7 +338,7 @@ class WallNoun {
      * @param imgElement
      */
     getImageServer(imgElement) {
-        fetch("images/js-canvas/html5.png")
+        fetch("images/text_wall_0_1.png")
             .then(response => {
                 if (response.ok) {
                     return response.blob();
@@ -381,7 +381,7 @@ class RockNoun {
      * @param imgElement
      */
     getImageServer(imgElement) {
-        fetch("images/js-canvas/html5.png")
+        fetch("images/text_rock_0_1.png")
             .then(response => {
                 if (response.ok) {
                     return response.blob();
@@ -423,7 +423,7 @@ class IsOperator {
      * @param imgElement
      */
     getImageServer(imgElement) {
-        fetch("images/js-canvas/html5.png")
+        fetch("images/text_is_0_1.png")
             .then(response => {
                 if (response.ok) {
                     return response.blob();
@@ -515,7 +515,7 @@ class YouProperty {
      * @param imgElement
      */
     getImageServer(imgElement) {
-        fetch("images/js-canvas/html5.png")
+        fetch("images/text_you_0_1.png")
             .then(response => {
                 if (response.ok) {
                     return response.blob();
@@ -583,7 +583,7 @@ class WinProperty {
      * @param imgElement
      */
     getImageServer(imgElement) {
-        fetch("images/js-canvas/html5.png")
+        fetch("images/text_win_0_1.png")
             .then(response => {
                 if (response.ok) {
                     return response.blob();
@@ -651,7 +651,7 @@ class StopProperty {
      * @param imgElement
      */
     getImageServer(imgElement) {
-        fetch("images/js-canvas/html5.png")
+        fetch("images/text_stop_0_1.png")
             .then(response => {
                 if (response.ok) {
                     return response.blob();
@@ -718,7 +718,7 @@ class PushProperty {
      * @param imgElement
      */
     getImageServer(imgElement) {
-        fetch("images/js-canvas/html5.png")
+        fetch("/img/text_push_0_1.png")
             .then(response => {
                 if (response.ok) {
                     return response.blob();
@@ -760,7 +760,7 @@ class BabaEntity {
      * @param imgElement
      */
     getImageServer(imgElement) {
-        fetch("images/js-canvas/html5.png")
+        fetch("/img/baba_0_1.png")
             .then(response => {
                 if (response.ok) {
                     return response.blob();
@@ -799,7 +799,7 @@ class FlagEntity {
      * @param imgElement
      */
     getImageServer(imgElement) {
-        fetch("images/js-canvas/html5.png")
+        fetch("/img/flag_0_1.png")
             .then(response => {
                 if (response.ok) {
                     return response.blob();
@@ -839,7 +839,7 @@ class WallEntity {
      * @param imgElement
      */
     getImageServer(imgElement) {
-        fetch("images/js-canvas/html5.png")
+        fetch("/img/wall_0_2.png")
             .then(response => {
                 if (response.ok) {
                     return response.blob();
@@ -878,7 +878,7 @@ class WaterEntity {
      * @param imgElement
      */
     getImageServer(imgElement) {
-        fetch("images/js-canvas/html5.png")
+        fetch("/img/water_0_1.png")
             .then(response => {
                 if (response.ok) {
                     return response.blob();
@@ -917,7 +917,7 @@ class RockEntity {
      * @param imgElement
      */
     getImageServer(imgElement) {
-        fetch("images/js-canvas/html5.png")
+        fetch("/img/rock_0_1.png")
             .then(response => {
                 if (response.ok) {
                     return response.blob();

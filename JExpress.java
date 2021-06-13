@@ -487,7 +487,7 @@ public class JExpress {
 
     app.get("/img/:name", (req, res) -> {
           out.println("serve image " + req.param("name"));
-          res.type("image/png", "utf-8").sendFile(Paths.get("pictures/" + req.param("name")));
+          res.type("image/png", "utf-8").sendFile(Paths.get("img/" + req.param("name")));
         });
 
     app.listen(8080);
