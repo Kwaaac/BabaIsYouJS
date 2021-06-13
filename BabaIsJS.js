@@ -11,62 +11,113 @@ let type = {
 };
 
 let words = {
-    NOUN: {
-        BABA: {
-            name: 'baba_noun',
-            ref: BabaNoun
+        NOUN: {
+            BABA: 'baba_noun',
+            FLAG: 'flag_noun',
+            WALL: 'wall_noun',
+            WATER: 'water_noun',
+            ROCK: 'rock_noun'
         },
-        FLAG: {
-            name: 'flag_noun',
-            ref: FlagNoun
+        OPERATOR: {
+            IS: 'is_operator'
         },
-        WALL: {
-            name: 'wall_noun',
-            ref: WallNoun
-        },
-        WATER: {
-            name: 'water_noun',
-            ref: WaterNoun
-        },
-        ROCK: {
-            name: 'rock_noun',
-            ref: RockNoun
+        PROPERTY: {
+            YOU: 'you_property',
+            WIN: 'win_property',
+            STOP: 'stop_property',
+            PUSH: 'push_property'
         }
-    },
-    OPERATOR: {
-        IS: 'is_operator'
-    },
-    PROPERTY: {
-        YOU: {
-            name: 'you_property',
-            ref: YouProperty
-        },
-        WIN: {
-            name: 'win_property',
-            ref: WinProperty
-        },
-        STOP: {
-            name: 'stop_property',
-            ref: StopProperty
-        },
-        PUSH: {
-            name: 'push_property',
-
-            ref: PushProperty
-        }
-    }
-};
+    };
 
 let entity = {
-    BABA: {
-        name: 'baba_entity',
-        ref: BabaEntity
-    },
+    BABA: 'baba_entity',
     FLAG: 'flag_entity',
     WALL: 'wall_entity',
     WATER: 'water_entity',
     ROCK: 'rock_entity'
 };
+
+/**
+ * function to create entity class
+ * @constructor
+ */
+function EntityFactory(){
+    this.create = function(attributs){
+        switch (attributs.name) {
+            case entity.BABA:
+                return new BabaEntity(attributs.position);
+            case entity.FLAG:
+                return new FlagEntity(attributs.position);
+            case entity.WALL:
+                return new WallEntity(attributs.position);
+            case entity.WATER:
+                return new WaterEntity(attributs.position);
+            case entity.ROCK:
+                return new RockEntity(attributs.position);
+            default:
+                break;
+        }
+    }
+}
+
+/**
+ * function to create noun class
+ * @constructor
+ */
+function NounFactory(){
+    this.create = function(attributs){
+        switch (attributs.name) {
+            case words.NOUN.BABA:
+                return new BabaNoun(attributs.position);
+            case words.NOUN.FLAG:
+                return new FlagNoun(attributs.position);
+            case words.NOUN.WALL:
+                return new WallNoun(attributs.position);
+            case words.NOUN.WATER:
+                return new WaterNoun(attributs.position);
+            case words.NOUN.ROCK:
+                return new RockNoun(attributs.position);
+            default:
+                break;
+        }
+    }
+}
+
+/**
+ * function to create property class
+ * @constructor
+ */
+function PropertyFactory(){
+    this.create = function(attributs){
+        switch (attributs.name) {
+            case words.PROPERTY.YOU:
+                return new YouProperty(attributs.position);
+            case words.PROPERTY.WIN:
+                return new WinProperty(attributs.position);
+            case words.PROPERTY.STOP:
+                return new StopProperty(attributs.position);
+            case words.PROPERTY.PUSH:
+                return new PushProperty(attributs.position);
+            default:
+                break;
+        }
+    }
+}
+
+/**
+ * function to create operator class
+ * @constructor
+ */
+function OperatorFactory(){
+    this.create = function(attributs){
+        switch (attributs.name) {
+            case words.OPERATOR.YOU:
+                return new IsOperator(attributs.position);
+            default:
+                break;
+        }
+    }
+}
 
 /**
  * Class to read a JSON file
@@ -146,7 +197,7 @@ class WaterNoun {
 }
 
 class WallNoun {
-    constructor() {
+    constructor(position) {
         this.position = position;
         this.name = words.NOUN.WALL;
         this.type = type.NOUN;
@@ -162,6 +213,17 @@ class RockNoun {
         this.name = words.NOUN.ROCK;
         this.position = position;
         this.state = new PushState();
+    }
+}
+
+/**
+ * Class that represents IS Operator on the board
+ */
+class IsOperator{
+    constructor(position) {
+        this.name = words.OPERATOR.IS;
+        this.position = position;
+        this.type = type.OPERATOR;
     }
 }
 
@@ -436,6 +498,9 @@ class Board {
 window.onload = () => {
     let boardTable = document.getElementById("boardTable");
     let board = new Board(33, 18);
+    let entityFactory = new EntityFactory();
+    let propertyFactory = new PropertyFactory();
+    let operatorFactory = new OperatorFactory();
 
     createHTMLboard(boardTable);
 
