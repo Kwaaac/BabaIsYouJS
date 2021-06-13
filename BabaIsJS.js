@@ -1096,29 +1096,27 @@ class Board {
         return true;
     }
 
-    doMove(movement, grid, x, y) {
-
-        this.moveEntity(movement, grid, youEntity);
-        let currentPos = grid[youEntity.position.x][youEntity.position.y];
-        currentPos.forEach(ent => {
-                let states = this.rules[ent.name];
-                states.forEach(state => {
-                    if (state.name === "win") {
-                        console.log("C'est gagné bravo !");
-                    }
-                })
-            }
-        )
-    }
-
     move(movement) {
         let grid = this.level[0];
         let tabYou = this.getYouArray();
-        if (movement.x === 1 && movement.y === 0 || movement.x === 0 && movement.y === 1) {
-            tabYou.forEach(youEntity => {
 
-            })
-        }
+        tabYou.forEach(youEntity => {
+            this.moveEntity(movement, grid, youEntity);
+
+            let currentPos = grid[youEntity.position.x][youEntity.position.y];
+            currentPos.forEach(ent => {
+                    let states = this.rules[ent.name];
+                    states.forEach(state => {
+                        if (state.name === "win") {
+                            console.log("C'est gagné bravo !");
+                        }
+                    })
+                }
+            )
+        })
+
+
+
     }
 }
 
